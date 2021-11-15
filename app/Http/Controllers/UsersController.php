@@ -38,7 +38,7 @@ class UsersController extends Controller
     public function store(UserRequest $request): \Illuminate\Http\RedirectResponse
     {
         User::create($request->only(['name', 'email']));
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('info', 'Create user ' . $request->name);
     }
 
     /**
@@ -85,6 +85,7 @@ class UsersController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('danger', 'Deleted user ' . $user->name);
+//        return redirect()->route('users.index')->withDanger('Deleted user' . $user->name);
     }
 }

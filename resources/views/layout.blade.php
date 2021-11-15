@@ -40,6 +40,12 @@
 <div class="container">
     <h1>@yield('title')</h1>
     <main>
+        @if(session('danger'))
+            <div class="alert alert-danger">{{session('danger')}}</div>
+        @endisset
+        @if(session('info'))
+            <div class="alert alert-info">{{session('info')}}</div>
+        @endisset
         @yield('content')
     </main>
 </div>
